@@ -1,4 +1,5 @@
-import TaskList from './components.js/TaskList.js';
+import TaskBoardView from './components.js/TaskBoardView.js';
+import TaskStore from './components.js/store/TaskStore.js';
 
 const tasks = [
     {
@@ -21,6 +22,9 @@ const tasks = [
     },
 ];
 
-const taskList = new TaskList('task-board', tasks);
-taskList.render();
+const store = new TaskStore(tasks);
+const boardView = new TaskBoardView('task-board', store);
+
+boardView.render();
+
 

@@ -10,14 +10,18 @@
 
 <body>
     <div id="task-board" class="task-board">
-        <div data-status="pending" class="task__column task__column--pending">
+        <div class="task__column">
             <h2>Pending tasks</h2>
+            <div id="pending" class="task__column--pending"></div>
         </div>
-        <div data-status="inprogress" class="task__column task__column--inprogress">
+        <div class="task__column">
             <h2>In progress tasks</h2>
+            <div id="inprogress" class="task__column--inprogress"></div>
         </div>
-        <div data-status="completed" class="task__column task__column--completed">
+        <div class="task__column">
             <h2>Completed tasks</h2>
+            <div id="completed" class="task__column--completed">
+            </div>
         </div>
     </div>
 
