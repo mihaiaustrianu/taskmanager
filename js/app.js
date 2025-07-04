@@ -1,3 +1,4 @@
+import AddTaskForm from './components.js/AddTaskForm.js';
 import TaskBoardView from './components.js/TaskBoardView.js';
 import TaskStore from './components.js/store/TaskStore.js';
 
@@ -26,5 +27,12 @@ const store = new TaskStore(tasks);
 const boardView = new TaskBoardView('task-board', store);
 
 boardView.render();
+
+const addTaskForm = new AddTaskForm(
+    (newTask) => {
+      store.addTask(newTask);
+      boardView.render();
+    }
+  );
 
 

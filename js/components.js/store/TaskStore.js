@@ -7,6 +7,10 @@ export default class TaskStore {
       return this.tasks.filter(task => task.status === status);
     }
 
+    addTask(task) {
+      this.tasks.push(task);
+    }
+
     deleteTask(taskId) {
       this.tasks = this.tasks.filter(task => task.id !== Number(taskId));
     }
