@@ -11,7 +11,7 @@ const tasks = [
         id: 2,
         title: 'Second Task',
         description: 'This is the second task.',
-        status: 'in progress',
+        status: 'inprogress',
     },
     {
         id: 3,
@@ -21,13 +21,6 @@ const tasks = [
     },
 ];
 
-const taskList = new TaskList('task-container', tasks);
+const taskList = new TaskList('task-board', tasks);
 taskList.render();
 
-setTimeout(() => {
-    taskList.addTask({
-        id: 4,
-        title: 'Forth Task',
-        description: 'This is the forth task.',
-    });
-}, 2000);
