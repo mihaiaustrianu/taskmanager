@@ -1,0 +1,104 @@
+section {
+    margin-top: 40px;
+    padding-left: 40px;
+    padding-right: 40px;
+    margin-bottom: 40px;
+}
+
+.task__board {
+    display: grid;
+    gap: 16px;
+    border: 1px solid var(--color-grey);
+    border-radius: 8px;
+    padding: 16px;
+    background-color: var(--color-primary);
+}
+
+.task__group {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.task__column-heading {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.task__column {
+    display: grid;
+    gap: 8px;
+}
+
+.task__delete {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.task__delete-icon {
+    width: 30px;
+    height: 30px;
+    pointer-events: none;
+}
+
+.task__delete:hover .task__delete-icon {
+    fill: red;
+}
+
+.task__add-button {
+    position: absolute;
+    right: 2px;
+    top: 2px;
+    background-color: var(--color-secondary);
+    color: var(--color-white);
+    padding: 8px;
+}
+
+.task {
+    position: relative;
+    background-color: var(--color-white);
+    padding: 16px;
+    border: 2px solid var(--color-grey);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+@media (min-width: 768px) {
+    .task__board {
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-areas:
+            'pending-heading inprogress-heading completed-heading'
+            'pending-column inprogress-column completed-column';
+    }
+
+    .task {
+        height: 140px;
+        p {
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            line-clamp: 2;
+            text-overflow: ellipsis;
+            -webkit-line-clamp: 2;
+            overflow: hidden;
+        }
+    }
+
+    .task__group:nth-child(1) {
+        grid-area: pending-heading / pending-column;
+    }
+
+    .task__group:nth-child(2) {
+        grid-area: inprogress-heading / inprogress-column;
+    }
+
+    .task__group:nth-child(3) {
+        grid-area: completed-heading / completed-column;
+    }
+}

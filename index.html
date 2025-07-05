@@ -1,14 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Task manager app</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/modal.css">
+    <link rel="stylesheet" href="css/tasks.css">
 </head>
+
 <body>
-    <div id="navbar-container"></div>
+    <section class="task-manager">
+        <div id="task-board" class="task__board">
+            <div class="task__group">
+                <h2 class="task__column-heading">Pending tasks</h2>
+                <button id="open-add-task-modal" class="task__add-button">+ Add Task</button>
+                <div id="pending" class="task__column task__column--pending"></div>
+            </div>
+
+            <div class="task__group">
+                <h2 class="task__column-heading">In progress tasks</h2>
+                <div id="inprogress" class="task__column task__column--inprogress"></div>
+            </div>
+
+            <div class="task__group">
+                <h2 class="task__column-heading">Completed tasks</h2>
+                <div id="completed" class="task__column task__column--completed"></div>
+            </div>
+        </div>
+    </section>
+
+    <div id="add-task-modal" class="modal hidden">
+        <div class="modal__content">
+            <span id="close-add-task-modal" class="modal__close">&times;</span>
+            <form id="add-task-form" class="task__form">
+                <input type="text" id="task-title" placeholder="Task title" required />
+                <input type="text" id="task-desc" placeholder="Task description" required />
+                <select id="task-status">
+                    <option value="pending">Pending</option>
+                    <option value="inprogress">In Progress</option>
+                    <option value="completed">Completed</option>
+                </select>
+                <button type="submit">Add Task</button>
+            </form>
+        </div>
+    </div>
 
     <script type="module" src="js/app.js"></script>
 </body>
+
 </html>
