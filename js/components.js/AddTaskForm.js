@@ -76,13 +76,11 @@ export default class AddTaskForm {
         const lastEl = focusable[focusable.length - 1];
 
         if (e.shiftKey) {
-            // Shift + Tab
             if (document.activeElement === firstEl) {
                 lastEl.focus();
                 e.preventDefault();
             }
         } else {
-            // Tab
             if (document.activeElement === lastEl) {
                 firstEl.focus();
                 e.preventDefault();

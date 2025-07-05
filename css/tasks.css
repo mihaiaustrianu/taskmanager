@@ -114,6 +114,14 @@ section {
     line-height: 1.4;
 }
 
+.task__status {
+    margin-top: var(--spacing-sm);
+    width: 120px;
+    border: 1px solid var(--color-grey);
+    border-radius: var(--border-radius);
+    font-family: inherit;
+}
+
 @media (min-width: 768px) {
     .task__board {
         grid-template-columns: repeat(3, 1fr);
@@ -144,5 +152,9 @@ section {
 
     .task__group:nth-child(3) {
         grid-area: completed-heading / completed-column;
+    }
+
+    .task__status {
+        display: none;
     }
 }

@@ -30,6 +30,15 @@ export default class TaskBoardView {
             }
         });
 
+        this.container.addEventListener('change', (e) => {
+            if (e.target.classList.contains('task__status')) {
+                const taskId = e.target.closest('.task').dataset.id;
+                const newStatus = e.target.value;
+                this.store.updateTaskStatus(taskId, newStatus);
+                this.render();
+            }
+        });
+
         this.draggable = new Draggable(
             this.groups,
             this.store,
@@ -38,6 +47,7 @@ export default class TaskBoardView {
     }
 
     render() {
+        // Reset columns before injecting new list
         Object.values(this.columns).forEach((col) => (col.innerHTML = ''));
 
         // Render tasks by status
