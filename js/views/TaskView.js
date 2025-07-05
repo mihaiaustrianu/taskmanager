@@ -25,7 +25,7 @@ export default class TaskView {
                   C114.732,130.798,113.832,131.698,112.732,131.698z"/>
                 </svg>
             </button>
-            <select class="task__status">
+            <select aria-label="Update task status" class="task__status">
               <option value="pending" ${this.task.status === 'pending' ? 'selected' : ''}>Pending</option>
               <option value="inprogress" ${this.task.status === 'inprogress' ? 'selected' : ''}>In Progress</option>
               <option value="completed" ${this.task.status === 'completed' ? 'selected' : ''}>Completed</option>
