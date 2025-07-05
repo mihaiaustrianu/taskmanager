@@ -1,0 +1,70 @@
+/* resets */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+* {
+    margin: 0;
+}
+
+body {
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    overflow-wrap: break-word;
+}
+
+p {
+    text-wrap: pretty;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    text-wrap: balance;
+}
+
+*/ #root,
+#__next {
+    isolation: isolate;
+}
+
+:root {
+    /* Neutrals */
+    --color-white: #ffffff;
+    --color-light: #d2d9d8;
+    --color-grey-light: #e0e0e0;
+    --color-grey: #9f9f9f;
+    --color-dark: #000000;
+
+    /* Primary color */
+    --color-primary: #d9bba9;
+    --color-primary-dark: #a6806a;
+
+    /* Secondary accent color */
+    --color-secondary: #a64e4e;
+    --color-secondary-dark: #592d1d;
+
+    /* Status colors */
+    --color-pending: #ffc107;
+    --color-inprogress: #17a2b8;
+    --color-completed: #28a745;
+}
+
+body {
+    background-color: var(--color-light);
+    color: var(--color-dark);
+    font-family: 'Roboto', sans-serif;
+}

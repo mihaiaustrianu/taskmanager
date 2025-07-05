@@ -18,7 +18,7 @@ const tasks = [
     {
         id: 3,
         title: 'Third Task',
-        description: 'This is the third task.',
+        description: 'This is the third task. This is the third task. This is the third task. This is the third task. This is the third task',
         status: 'completed',
     },
 ];

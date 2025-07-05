@@ -5,12 +5,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Task manager app</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/modal.css">
+    <link rel="stylesheet" href="css/tasks.css">
 </head>
 
 <body>
-    <button id="open-add-task-modal" class="task__add-button">Add Task</button>
+    <section class="task-manager">
+        <button id="open-add-task-modal" class="task__add-button">Add Task</button>
+
+        <div id="task-board" class="task__board">
+            <div id="pending" class="task__column task__column--pending">
+                <h2>Pending tasks</h2>
+            </div>
+            <div id="inprogress" class="task__column task__column--inprogress">
+                <h2>In progress tasks</h2>
+            </div>
+            <div id="completed" class="task__column task__column--completed">
+                <h2>Completed tasks</h2>
+            </div>
+        </div>
+    </section>
 
     <div id="add-task-modal" class="modal hidden">
         <div class="modal__content">
@@ -25,22 +41,6 @@
                 </select>
                 <button type="submit">Add Task</button>
             </form>
-        </div>
-    </div>
-
-    <div id="task-board" class="task-board">
-        <div class="task__column">
-            <h2>Pending tasks</h2>
-            <div id="pending" class="task__column--pending"></div>
-        </div>
-        <div class="task__column">
-            <h2>In progress tasks</h2>
-            <div id="inprogress" class="task__column--inprogress"></div>
-        </div>
-        <div class="task__column">
-            <h2>Completed tasks</h2>
-            <div id="completed" class="task__column--completed">
-            </div>
         </div>
     </div>
 
