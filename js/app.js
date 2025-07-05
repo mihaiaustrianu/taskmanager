@@ -1,6 +1,6 @@
 import AddTaskForm from './components.js/AddTaskForm.js';
-import TaskBoardView from './components.js/TaskBoardView.js';
-import TaskStore from './components.js/store/TaskStore.js';
+import TaskBoardView from './views/TaskBoardView.js';
+import TaskStore from './store/TaskStore.js';
 
 const tasks = [
     {

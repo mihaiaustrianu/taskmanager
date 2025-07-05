@@ -1,5 +1,3 @@
-// js/AddTaskForm.js
-
 export default class AddTaskForm {
     constructor(onSubmitCallback) {
         this.modal = document.getElementById('add-task-modal');
