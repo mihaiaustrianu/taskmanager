@@ -5,7 +5,7 @@ export default class TaskView {
 
     render() {
         return `
-          <div class="task" data-id="${this.task.id}">
+          <div draggable="true" class="task" data-id="${this.task.id}">
             <h3>${this.task.title}</h3>
             <p>${this.task.description}</p>
             <button class="task__delete" aria-label="Delete task">

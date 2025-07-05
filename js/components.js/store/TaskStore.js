@@ -14,4 +14,13 @@ export default class TaskStore {
     deleteTask(taskId) {
         this.tasks = this.tasks.filter((task) => task.id !== Number(taskId));
     }
+
+    updateTaskStatus(taskId, newStatus) {
+      const task = this.tasks.find(task => task.id === Number(taskId));
+      if (task) {
+          task.status = newStatus;
+          return true;
+      }
+      return false;
+  }
 }

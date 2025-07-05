@@ -15,20 +15,20 @@
 <body>
     <section class="task-manager">
         <div id="task-board" class="task__board">
-            <div class="task__group">
-                <h2 class="task__column-heading">Pending tasks</h2>
+            <div data-status="pending" class="task__group">
+                <h2 class="task__column-heading">Pending</h2>
                 <button id="open-add-task-modal" class="task__add-button">+ Add Task</button>
-                <div id="pending" class="task__column task__column--pending"></div>
+                <div class="task__column task__column--pending"></div>
             </div>
 
-            <div class="task__group">
-                <h2 class="task__column-heading">In progress tasks</h2>
-                <div id="inprogress" class="task__column task__column--inprogress"></div>
+            <div data-status="inprogress" class="task__group">
+                <h2 class="task__column-heading">In progress</h2>
+                <div class="task__column task__column--inprogress"></div>
             </div>
 
-            <div class="task__group">
-                <h2 class="task__column-heading">Completed tasks</h2>
-                <div id="completed" class="task__column task__column--completed"></div>
+            <div data-status="completed" class="task__group">
+                <h2 class="task__column-heading">Completed</h2>
+                <div class="task__column task__column--completed"></div>
             </div>
         </div>
     </section>

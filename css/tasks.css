@@ -19,6 +19,10 @@ section {
     display: flex;
     flex-direction: column;
     gap: 8px;
+    background: var(--color-white);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    min-height: 500px;
 }
 
 .task__column-heading {
@@ -29,6 +33,15 @@ section {
 .task__column {
     display: grid;
     gap: 8px;
+    padding: 20px;
+}
+
+.task__column-heading {
+    padding: 20px;
+    margin: 0;
+    background: var(--color-highlight);
+    color: var(--color-white);
+    border-radius: 8px 8px 0 0;
 }
 
 .task__delete {
@@ -52,11 +65,15 @@ section {
 
 .task__add-button {
     position: absolute;
-    right: 2px;
-    top: 2px;
+    right: 10px;
+    top: 1rem;
     background-color: var(--color-secondary);
     color: var(--color-white);
     padding: 8px;
+}
+
+.task__add-button:hover {
+    background-color: var(--color-secondary-dark);
 }
 
 .task {
@@ -68,6 +85,23 @@ section {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    transition: all 0.3s;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    cursor: move;
+}
+
+.task:hover {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.task.dragging {
+    opacity: 0.5;
+    transform: rotate(2deg);
+}
+
+.drag-over {
+    background: #e8f5e8 ;
+    border: 2px dashed var(--color-completed);
 }
 
 @media (min-width: 768px) {

@@ -1,3 +1,4 @@
+import Draggable from './Draggable.js';
 import TaskView from './TaskView.js';
 import { STATUS } from './constants.js';
 
@@ -18,6 +19,8 @@ export default class TaskBoardView {
             ),
         };
 
+        this.groups = this.container.querySelectorAll(".task__group");
+
         // Event delegation delete
         this.container.addEventListener('click', (e) => {
             if (e.target.classList.contains('task__delete')) {
@@ -26,6 +29,12 @@ export default class TaskBoardView {
                 this.render();
             }
         });
+
+        this.draggable = new Draggable(
+            this.groups,
+            this.store,
+            () => this.render()
+        );
     }
 
     render() {
