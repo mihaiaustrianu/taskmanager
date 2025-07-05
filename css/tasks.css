@@ -7,10 +7,10 @@ section {
 
 .task__board {
     display: grid;
-    gap: 16px;
+    gap: var(--spacing-sm);
     border: 1px solid var(--color-grey);
-    border-radius: 8px;
-    padding: 16px;
+    border-radius: var(--border-radius);
+    padding: var(--spacing-sm);
     background-color: var(--color-primary);
 }
 
@@ -18,36 +18,33 @@ section {
     position: relative;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: var(--spacing-xs);
     background: var(--color-white);
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-sm);
     min-height: 500px;
 }
 
 .task__column-heading {
+    padding: var(--spacing-md);
+    margin: 0;
+    background: var(--color-highlight);
+    color: var(--color-white);
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
     font-size: 1.2rem;
-    font-weight: bold;
+    font-weight: 600;
 }
 
 .task__column {
     display: grid;
-    gap: 8px;
-    padding: 20px;
-}
-
-.task__column-heading {
-    padding: 20px;
-    margin: 0;
-    background: var(--color-highlight);
-    color: var(--color-white);
-    border-radius: 8px 8px 0 0;
+    gap: var(--spacing-xs);
+    padding: var(--spacing-md);
 }
 
 .task__delete {
     position: absolute;
-    top: 8px;
-    right: 8px;
+    top: var(--spacing-xs);
+    right: var(--spacing-xs);
     background: transparent;
     border: none;
     cursor: pointer;
@@ -57,6 +54,7 @@ section {
     width: 30px;
     height: 30px;
     pointer-events: none;
+    transition: fill 0.3s ease;
 }
 
 .task__delete:hover .task__delete-icon {
@@ -65,11 +63,13 @@ section {
 
 .task__add-button {
     position: absolute;
-    right: 10px;
-    top: 1rem;
+    font-weight: bold;
+    right: var(--spacing-sm);
+    top: var(--spacing-sm);
     background-color: var(--color-secondary);
     color: var(--color-white);
-    padding: 8px;
+    padding: var(--spacing-xs) 12px;
+    transition: background-color 0.3s ease;
 }
 
 .task__add-button:hover {
@@ -79,19 +79,20 @@ section {
 .task {
     position: relative;
     background-color: var(--color-white);
-    padding: 16px;
-    border: 2px solid var(--color-grey);
-    border-radius: 8px;
+    padding: var(--spacing-sm);
+    border: var(--border-width) solid var(--color-grey);
+    border-radius: var(--border-radius);
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     transition: all 0.3s;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: var(--shadow-sm);
     cursor: move;
 }
 
 .task:hover {
-    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
 }
 
 .task.dragging {
@@ -100,8 +101,17 @@ section {
 }
 
 .drag-over {
-    background: #e8f5e8 ;
-    border: 2px dashed var(--color-completed);
+    background: #e8f5e8;
+    border: var(--border-width) dashed var(--color-completed)
+}
+
+.task h3 {
+    margin-bottom: var(--spacing-xs);
+    color: var(--color-highlight);
+}
+
+.task p {
+    line-height: 1.4;
 }
 
 @media (min-width: 768px) {

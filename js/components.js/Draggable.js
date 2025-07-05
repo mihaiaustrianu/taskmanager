@@ -1,4 +1,3 @@
-import { STATUS } from "./constants.js";
 export default class Draggable {
     constructor(groups, store, onTaskMoved) {
         this.store = store;

@@ -1,6 +1,6 @@
 import Draggable from './Draggable.js';
 import TaskView from './TaskView.js';
-import { STATUS } from './constants.js';
+import { STATUS } from "../constants.js";
 
 export default class TaskBoardView {
     constructor(boardId, store) {

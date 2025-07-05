@@ -35,16 +35,16 @@
 
     <div id="add-task-modal" class="modal hidden">
         <div class="modal__content">
-            <span id="close-add-task-modal" class="modal__close">&times;</span>
+            <button id="close-add-task-modal" class="modal__close">&times;</button>
             <form id="add-task-form" class="task__form">
                 <input type="text" id="task-title" placeholder="Task title" required />
-                <input type="text" id="task-desc" placeholder="Task description" required />
+                <input type="textarea" id="task-desc" placeholder="Task description" required />
                 <select id="task-status">
                     <option value="pending">Pending</option>
                     <option value="inprogress">In Progress</option>
                     <option value="completed">Completed</option>
                 </select>
-                <button type="submit">Add Task</button>
+                <button class="modal__submit" type="submit">Add Task</button>
             </form>
         </div>
     </div>
