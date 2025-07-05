@@ -68,3 +68,12 @@ body {
     color: var(--color-dark);
     font-family: 'Roboto', sans-serif;
 }
+
+button {
+    padding: 4px;
+    border-radius: 8px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+}
