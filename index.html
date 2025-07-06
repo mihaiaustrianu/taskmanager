@@ -18,7 +18,7 @@
         <div id="task-board" class="task__board">
             <div data-status="pending" class="task__group">
                 <h2 class="task__column-heading">Pending</h2>
-                <button id="open-add-task-modal" class="task__add-button">+ Add Task</button>
+                <button id="open-task-modal" class="task__add-button">+ Add Task</button>
                 <div class="task__column task__column--pending"></div>
             </div>
 
@@ -34,10 +34,10 @@
         </div>
     </section>
 
-    <div id="add-task-modal" class="modal hidden">
+    <div id="task-modal" class="modal hidden">
         <div class="modal__content">
-            <button id="close-add-task-modal" class="modal__close">&times;</button>
-            <form id="add-task-form" class="task__form">
+            <button id="close-task-modal" class="modal__close">&times;</button>
+            <form id="task-form" class="task__form">
                 <input type="text" id="task-title" placeholder="Task title" required />
                 <input type="textarea" id="task-desc" placeholder="Task description" required />
                 <select aria-label="Select status" id="task-status">

@@ -3,9 +3,10 @@ import TaskView from './TaskView.js';
 import { STATUS } from "../constants.js";
 
 export default class TaskBoardView {
-    constructor(boardId, store) {
+    constructor(boardId, store, modalView) {
         this.container = document.getElementById(boardId);
         this.store = store;
+        this.modalView = modalView;
 
         this.columns = {
             [STATUS.PENDING]: this.container.querySelector(
@@ -38,6 +39,14 @@ export default class TaskBoardView {
                 this.render();
             }
         });
+
+        this.container.addEventListener('click', (e)=> {
+            if(e.target.classList.contains('task__edit')) {
+                const taskID = e.target.closest('.task').dataset.id;
+                const task = this.store.getTaskById(taskID);
+                task && this.modalView.openModalForEdit(task, true);
+            }
+        })
 
         this.draggable = new Draggable(
             this.groups,
