@@ -3,3 +3,5 @@ export const STATUS = {
     IN_PROGRESS: 'inprogress',
     COMPLETED: 'completed',
 };
+
+export const STORAGE_KEY_TASKS = 'tasks';

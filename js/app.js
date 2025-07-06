@@ -1,30 +1,9 @@
-import AddTaskForm from './components.js/AddTaskForm.js';
+import AddTaskForm from './components/AddTaskForm.js';
 import TaskBoardView from './views/TaskBoardView.js';
 import TaskStore from './store/TaskStore.js';
 
-const tasks = [
-    {
-        id: 1,
-        title: 'First Task',
-        description: 'This is the first task.',
-        status: 'pending',
-    },
-    {
-        id: 2,
-        title: 'Second Task',
-        description: 'This is the second task.',
-        status: 'inprogress',
-    },
-    {
-        id: 3,
-        title: 'Third Task',
-        description:
-            'This is the third task. This is the third task. This is the third task. This is the third task. This is the third task',
-        status: 'completed',
-    },
-];
 
-const store = new TaskStore(tasks);
+const store = new TaskStore();
 const boardView = new TaskBoardView('task-board', store);
 
 boardView.render();

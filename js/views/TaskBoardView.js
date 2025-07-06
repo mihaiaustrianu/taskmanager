@@ -1,4 +1,4 @@
-import Draggable from '../components.js/Draggable.js';
+import Draggable from '../components/Draggable.js';
 import TaskView from './TaskView.js';
 import { STATUS } from "../constants.js";
 
