@@ -34,24 +34,43 @@
     padding: var(--spacing-md);
 }
 
-.task__delete {
+.task__delete, .task__edit {
     position: absolute;
-    top: var(--spacing-xs);
-    right: var(--spacing-xs);
     background: transparent;
     border: none;
     cursor: pointer;
+    padding: 0;
 }
 
-.task__delete-icon {
+.task__delete-icon, .task__edit-icon {
     width: 40px;
     height: 40px;
     pointer-events: none;
     transition: fill 0.3s ease;
 }
 
+.task__delete {
+    bottom: var(--spacing-xs);
+    right: var(--spacing-xs);
+}
+
 .task__delete:hover .task__delete-icon {
     fill: red;
+}
+
+.task__edit {
+    top: var(--spacing-sm);
+    right: var(--spacing-sm);
+}
+
+.task__edit-icon {
+    width: 24px;
+    height: 24px;
+    fill: var(--color-secondary);
+}
+
+.task__edit:hover .task__edit-icon {
+    fill: var(--color-secondary-dark);
 }
 
 .task__add-button {
