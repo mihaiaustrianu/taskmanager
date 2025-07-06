@@ -1,18 +1,18 @@
 export default class ModalView {
-    constructor(modalID, onSubmitCallback) {
+    constructor(modalID) {
         this.modal = document.getElementById(modalID);
         this.form = this.modal.querySelector('#task-form');
-        this.openBtn = document.getElementById('open-task-modal');
         this.closeBtn = this.modal.querySelector('#close-task-modal');
-        this.onSubmitCallback = onSubmitCallback;
         this.editingTaskId = null;
+        this.isEditMode = false;
     }
 
     init() {
-        if (this.openBtn) {
-            this.openBtn.addEventListener('click', () => this.openModal());
-        }
+        this.setupEventHandlers();
+        this.setupGlobalEventListeners();
+    }
 
+    setupEventHandlers() {
         this.closeBtn.addEventListener('click', () => this.closeModal());
 
         window.addEventListener('click', (e) => {
@@ -26,17 +26,23 @@ export default class ModalView {
         this.form.addEventListener('submit', (e) => this.handleSubmit(e));
     }
 
+    setupGlobalEventListeners() {
+        window.addEventListener('openModalForCreate', () => {
+            this.openModalForCreate();
+        });
+
+        window.addEventListener('openModalForEdit', (e) => {
+            const { task } = e.detail;
+            this.openModalForEdit(task);
+        });
+    }
+
     handleSubmit(e) {
         e.preventDefault();
 
         const title = this.form.querySelector('#task-title').value.trim();
         const desc = this.form.querySelector('#task-desc').value.trim();
         const status = this.form.querySelector('#task-status').value;
-
-        if (!title || !desc) {
-            alert('Please fill in all fields');
-            return;
-        }
 
         const taskData = {
             id: this.editingTaskId || Date.now(),
@@ -45,7 +51,17 @@ export default class ModalView {
             status,
         };
 
-        this.onSubmitCallback(taskData, !!this.editingTaskId);
+        if (this.isEditMode) {
+            const event = new CustomEvent('taskUpdate', {
+                detail: { taskData },
+            });
+            window.dispatchEvent(event);
+        } else {
+            const event = new CustomEvent('taskCreate', {
+                detail: { taskData },
+            });
+            window.dispatchEvent(event);
+        }
 
         this.resetForm();
         this.closeModal();
@@ -68,11 +84,19 @@ export default class ModalView {
         this.closeBtn.focus();
     }
 
+    openModalForCreate() {
+        this.isEditMode = false;
+        this.editingTaskId = null;
+        this.form.querySelector('.modal__submit').textContent = 'Add Task';
+        this.openModal();
+    }
+
     openModalForEdit(task) {
         this.form.querySelector('#task-title').value = task.title;
         this.form.querySelector('#task-desc').value = task.description;
         this.form.querySelector('#task-status').value = task.status;
         this.editingTaskId = task.id;
+        this.isEditMode = true;
         this.form.querySelector('.modal__submit').textContent = 'Update Task';
         this.openModal();
     }
@@ -85,6 +109,7 @@ export default class ModalView {
     resetForm() {
         this.form.reset();
         this.editingTaskId = null;
+        this.isEditMode = false;
         this.form.querySelector('.modal__submit').textContent = 'Add Task';
     }
 

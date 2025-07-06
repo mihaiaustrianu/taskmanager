@@ -1,12 +1,12 @@
-import Draggable from '../components/Draggable.js';
 import TaskView from './TaskView.js';
-import { STATUS } from "../constants.js";
+import { STATUS } from '../constants.js';
+import Draggable from '../components/Draggable.js';
 
 export default class TaskBoardView {
-    constructor(boardId, store, modalView) {
+    constructor(boardId) {
         this.container = document.getElementById(boardId);
-        this.store = store;
-        this.modalView = modalView;
+        this.addTaskButton = this.container.querySelector('.task__add-button');
+        this.groups = this.container.querySelectorAll('.task__group');
 
         this.columns = {
             [STATUS.PENDING]: this.container.querySelector(
@@ -20,14 +20,33 @@ export default class TaskBoardView {
             ),
         };
 
-        this.groups = this.container.querySelectorAll(".task__group");
+        this.draggable = new Draggable(this.groups);
+        this.setupEventHandlers();
+    }
 
-        // Event delegation delete
+    setupEventHandlers() {
+        if (this.addTaskButton) {
+            this.addTaskButton.addEventListener('click', () => {
+                const event = new CustomEvent('taskCreateRequest');
+                window.dispatchEvent(event);
+            });
+        }
+
         this.container.addEventListener('click', (e) => {
             if (e.target.classList.contains('task__delete')) {
                 const taskId = e.target.closest('.task').dataset.id;
-                this.store.deleteTask(taskId);
-                this.render();
+                const event = new CustomEvent('taskDelete', {
+                    detail: { taskId },
+                });
+                window.dispatchEvent(event);
+            }
+
+            if (e.target.classList.contains('task__edit')) {
+                const taskId = e.target.closest('.task').dataset.id;
+                const event = new CustomEvent('taskEditRequest', {
+                    detail: { taskId },
+                });
+                window.dispatchEvent(event);
             }
         });
 
@@ -35,34 +54,22 @@ export default class TaskBoardView {
             if (e.target.classList.contains('task__status')) {
                 const taskId = e.target.closest('.task').dataset.id;
                 const newStatus = e.target.value;
-                this.store.updateTaskStatus(taskId, newStatus);
-                this.render();
+                const event = new CustomEvent('taskStatusChange', {
+                    detail: { taskId, newStatus },
+                });
+                window.dispatchEvent(event);
             }
         });
-
-        this.container.addEventListener('click', (e)=> {
-            if(e.target.classList.contains('task__edit')) {
-                const taskID = e.target.closest('.task').dataset.id;
-                const task = this.store.getTaskById(taskID);
-                task && this.modalView.openModalForEdit(task, true);
-            }
-        })
-
-        this.draggable = new Draggable(
-            this.groups,
-            this.store,
-            () => this.render()
-        );
     }
 
-    render() {
+    render(tasksByStatus) {
         // Reset columns before injecting new list
         Object.values(this.columns).forEach((col) => (col.innerHTML = ''));
 
         // Render tasks by status
         [STATUS.PENDING, STATUS.IN_PROGRESS, STATUS.COMPLETED].forEach(
             (status) => {
-                const tasks = this.store.getTasksByStatus(status);
+                const tasks = tasksByStatus[status] || [];
                 tasks.forEach((task) => {
                     const taskHTML = new TaskView(task).render();
                     this.columns[status].insertAdjacentHTML(
