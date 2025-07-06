@@ -4,25 +4,60 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0, 0, 0, 0.5);
     display: flex;
     align-items: center;
     justify-content: center;
-  }
+}
 
-  .modal__content {
-    background: white;
-    padding: 2rem;
-    border-radius: 8px;
-    width: 300px;
-  }
+.modal__content {
+    background-color: var(--color-white);
+    margin: 10% auto;
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius);
+    max-width: 500px;
+    box-shadow: var(--shadow-md);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: var(--spacing-md);
+}
 
-  .modal__close {
+.modal__content input,
+.modal__content textarea,
+.modal__content select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: var(--spacing-sm);
+    border: 1px solid var(--color-grey);
+    border-radius: var(--border-radius);
+    font-size: 14px;
+    font-family: inherit;
+}
+
+.modal__content input:focus,
+.modal__content textarea:focus,
+.modal__content select:focus {
+    outline: none;
+    border-color: var(--color-secondary);
+}
+
+.modal__content textarea {
+    height: 80px;
+    resize: vertical;
+}
+
+.modal__close {
     cursor: pointer;
     float: right;
     font-size: 1.5rem;
-  }
+}
 
-  .hidden {
+.modal__submit {
+    padding: var(--spacing-sm);
+    float: right;
+}
+
+.hidden {
     display: none;
-  }
+}

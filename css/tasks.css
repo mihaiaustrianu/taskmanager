@@ -7,10 +7,10 @@ section {
 
 .task__board {
     display: grid;
-    gap: 16px;
+    gap: var(--spacing-sm);
     border: 1px solid var(--color-grey);
-    border-radius: 8px;
-    padding: 16px;
+    border-radius: var(--border-radius);
+    padding: var(--spacing-sm);
     background-color: var(--color-primary);
 }
 
@@ -18,32 +18,43 @@ section {
     position: relative;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: var(--spacing-xs);
+    background: var(--color-white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-sm);
+    min-height: 500px;
 }
 
 .task__column-heading {
+    padding: var(--spacing-md);
+    margin: 0;
+    background: var(--color-highlight);
+    color: var(--color-white);
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
     font-size: 1.2rem;
-    font-weight: bold;
+    font-weight: 600;
 }
 
 .task__column {
     display: grid;
-    gap: 8px;
+    gap: var(--spacing-xs);
+    padding: var(--spacing-md);
 }
 
 .task__delete {
     position: absolute;
-    top: 8px;
-    right: 8px;
+    top: var(--spacing-xs);
+    right: var(--spacing-xs);
     background: transparent;
     border: none;
     cursor: pointer;
 }
 
 .task__delete-icon {
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
     pointer-events: none;
+    transition: fill 0.3s ease;
 }
 
 .task__delete:hover .task__delete-icon {
@@ -52,22 +63,64 @@ section {
 
 .task__add-button {
     position: absolute;
-    right: 2px;
-    top: 2px;
+    font-weight: bold;
+    right: var(--spacing-sm);
+    top: var(--spacing-sm);
     background-color: var(--color-secondary);
     color: var(--color-white);
-    padding: 8px;
+    padding: var(--spacing-xs) 12px;
+    transition: background-color 0.3s ease;
+}
+
+.task__add-button:hover {
+    background-color: var(--color-secondary-dark);
 }
 
 .task {
     position: relative;
     background-color: var(--color-white);
-    padding: 16px;
-    border: 2px solid var(--color-grey);
-    border-radius: 8px;
+    padding: var(--spacing-sm);
+    border: var(--border-width) solid var(--color-grey);
+    border-radius: var(--border-radius);
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
+    transition: all 0.3s;
+    box-shadow: var(--shadow-sm);
+    cursor: move;
+}
+
+.task:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+}
+
+.task.dragging {
+    opacity: 0.5;
+    transform: rotate(2deg);
+}
+
+.drag-over {
+    background: #e8f5e8;
+    border: var(--border-width) dashed var(--color-completed)
+}
+
+.task h3 {
+    margin-bottom: var(--spacing-xs);
+    color: var(--color-highlight);
+}
+
+.task p {
+    line-height: 1.4;
+}
+
+.task__status {
+    margin-top: var(--spacing-sm);
+    width: 120px;
+    border: 1px solid var(--color-grey);
+    border-radius: var(--border-radius);
+    font-family: inherit;
+    font-weight: 500;
 }
 
 @media (min-width: 768px) {
@@ -100,5 +153,9 @@ section {
 
     .task__group:nth-child(3) {
         grid-area: completed-heading / completed-column;
+    }
+
+    .task__status {
+        display: none;
     }
 }

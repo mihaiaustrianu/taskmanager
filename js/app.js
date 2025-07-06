@@ -1,6 +1,6 @@
 import AddTaskForm from './components.js/AddTaskForm.js';
-import TaskBoardView from './components.js/TaskBoardView.js';
-import TaskStore from './components.js/store/TaskStore.js';
+import TaskBoardView from './views/TaskBoardView.js';
+import TaskStore from './store/TaskStore.js';
 
 const tasks = [
     {
@@ -18,7 +18,8 @@ const tasks = [
     {
         id: 3,
         title: 'Third Task',
-        description: 'This is the third task. This is the third task. This is the third task. This is the third task. This is the third task',
+        description:
+            'This is the third task. This is the third task. This is the third task. This is the third task. This is the third task',
         status: 'completed',
     },
 ];
@@ -28,11 +29,7 @@ const boardView = new TaskBoardView('task-board', store);
 
 boardView.render();
 
-const addTaskForm = new AddTaskForm(
-    (newTask) => {
-      store.addTask(newTask);
-      boardView.render();
-    }
-  );
-
-
+const addTaskForm = new AddTaskForm((newTask) => {
+    store.addTask(newTask);
+    boardView.render();
+});

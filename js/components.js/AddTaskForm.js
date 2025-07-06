@@ -1,5 +1,3 @@
-// js/AddTaskForm.js
-
 export default class AddTaskForm {
     constructor(onSubmitCallback) {
         this.modal = document.getElementById('add-task-modal');
@@ -20,6 +18,8 @@ export default class AddTaskForm {
                 this.closeModal();
             }
         });
+
+        window.addEventListener('keydown', (e) => this.handleKeyDown(e));
 
         this.form.addEventListener('submit', (e) => {
             e.preventDefault();
@@ -45,11 +45,46 @@ export default class AddTaskForm {
         });
     }
 
+    handleKeyDown(e) {
+        if (!this.modal.classList.contains('hidden')) {
+            if (e.key === 'Escape') {
+                this.closeModal();
+            }
+
+            if (e.key === 'Tab') {
+                this.maintainFocus(e);
+            }
+        }
+    }
+
     openModal() {
         this.modal.classList.remove('hidden');
+        this.closeBtn.focus();
     }
 
     closeModal() {
         this.modal.classList.add('hidden');
+    }
+
+    maintainFocus(e) {
+        const focusableElements = this.modal.querySelectorAll(
+            'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        );
+        const focusable = Array.prototype.slice.call(focusableElements);
+
+        const firstEl = focusable[0];
+        const lastEl = focusable[focusable.length - 1];
+
+        if (e.shiftKey) {
+            if (document.activeElement === firstEl) {
+                lastEl.focus();
+                e.preventDefault();
+            }
+        } else {
+            if (document.activeElement === lastEl) {
+                firstEl.focus();
+                e.preventDefault();
+            }
+        }
     }
 }

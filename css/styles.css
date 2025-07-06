@@ -48,6 +48,7 @@ h6 {
     --color-grey-light: #e0e0e0;
     --color-grey: #9f9f9f;
     --color-dark: #000000;
+    --color-highlight: #1B3C53;
 
     /* Primary color */
     --color-primary: #d9bba9;
@@ -61,6 +62,19 @@ h6 {
     --color-pending: #ffc107;
     --color-inprogress: #17a2b8;
     --color-completed: #28a745;
+
+    --spacing-xs: 8px;
+    --spacing-sm: 16px;
+    --spacing-md: 20px;
+    --spacing-lg: 40px;
+
+    /* Shadows */
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.15);
+
+    /* Borders */
+    --border-radius: 8px;
+    --border-width: 2px;
 }
 
 body {
