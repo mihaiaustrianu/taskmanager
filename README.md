@@ -8,7 +8,7 @@ On desktop the app has a simple design, consisting of a grid displayed in three 
 
 The update and delete operations can be triggered on each individual card. The create operation is triggered from the "Add task" button.
 On desktop, the status change operation can be triggered by dragging a task in the desired column.
-<h2> Mobile </h2>
+<h2>2. Mobile </h2>
 
 On mobile, the grid collapses to a single column.
 
@@ -17,12 +17,12 @@ On mobile, the grid collapses to a single column.
 
 The user no longer has access to the drag functionality, so on smaller resolutions it has been replaced by a status dropdown that can trigger the update.
 
-<h2>2.Color pallete</h2>
+<h2>3. Color pallete</h2>
 The color pallete is simple, consisting of white, grays and black for the text/borders and a neutral color scheme for backgrounds and elements
 
 ![image](https://github.com/user-attachments/assets/c3cb592d-16d2-4b31-b3b0-ee6a40e4be67)
 
-<h2>3. Accessibility</h2>
+<h2>4. Accessibility</h2>
 The app follows accessibility principles:
 <ul>
   <li>Uses semantic HTML for structure and readability.</li>
@@ -30,7 +30,7 @@ The app follows accessibility principles:
   <li>Responsive layouts ensure usability on all devices.</li>
 </ul>
 
-<h2>4. User Feedback</h2>
+<h2>5. User Feedback</h2>
 When a task is created, updated, or deleted, the UI updates dynamically to provide immediate feedback.
 When a task is being dragged, the real element is blurred out. Upon hovering over a column, the border is higlighted 
 
@@ -54,7 +54,7 @@ When a task is being dragged, the real element is blurred out. Upon hovering ove
 </ul>
 
 <h2>3. Data Flows</h2>
-The app implements an MVC-inspired architecture, where the TaskController coordinates between TaskStore (model) and multiple views. 
+The app implements an MVC-inspired architecture, where the TaskController coordinates between TaskStore (model) and multiple views.
 This separation ensures maintainability, readability, and testability.
 
 ![UMLDiagram drawio](https://github.com/user-attachments/assets/af2885ae-27b5-4284-ae2e-4fc468205bd5)
@@ -63,7 +63,7 @@ Actions by users trigger actions that emit custom events. These events are captu
 The app controller acts as a mediator between the TaskBoard and the Modal, as it listens to requests to open the latter from the former.
 A different event is dispatched when a task is created or updated.
 
-Events: 
+<h3>3.1 Events:</h3>
 <ul>
   <li>taskCreate - creates a task in the store </li>
   <li>taskUpdate - updates a task from the store</li>
@@ -77,21 +77,21 @@ Events:
 
 Using custom events decouples the UI components from each other, allowing easy extension of functionality in the future.
 
-<h3>3.1. Event Flow for create : </h3>
+<h3>3.2 Event Flow for create : </h3>
 
 ![EventFlow drawio (1)](https://github.com/user-attachments/assets/b8990ff2-6d6c-49b2-9d6a-44192489eb7a)
 
-1. The user initiates an action (Add task). 
+1. The user initiates an action (Add task).
 2. A [taskCreateRequest] is emitted from the TaskBoard.
 3. This event is captured by the AppController that emits a new [openModalForCreate] request to the Modal
 4. If the user submits the form, a [taskCreate] request is sent back to the AppController
 5. The store is updated
 6. The taskBoard is refreshed with the new data
 
-<h3>3.2. Event Flow for update</h3>
+<h3>3.3 Event Flow for update</h3>
 For update, the event flow is simillar
 
-<h3>3.3. Event flow for delete</h3>
+<h3>3.4 Event flow for delete</h3>
 <ol>
   <li>The user initiates a delete action</li>
   <li>A [taskDelete] event is dispatched from the TaskBoard.</li>

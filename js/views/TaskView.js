@@ -5,10 +5,10 @@ export default class TaskView {
 
     render() {
         return `
-          <div draggable="true" class="task" data-id="${this.task.id}">
+          <div draggable="true" class="task" data-task-status="${this.task.status}" data-id="${this.task.id}">
             <h3>${this.task.title}</h3>
             <p>${this.task.description}</p>
-            <select aria-label="Update task status" class="task__status">
+            <select id="task-status-update-${this.task.id}" aria-label="Update task status" class="task__status">
                 <option value="pending" ${ this.task.status==='pending' ? 'selected' : '' }>Pending</option>
                 <option value="inprogress" ${ this.task.status==='inprogress' ? 'selected' : '' }>In Progress</option>
                 <option value="completed" ${ this.task.status==='completed' ? 'selected' : '' }>Completed</option>

@@ -2,7 +2,7 @@ import TaskStore from '../store/TaskStore.js';
 import ModalView from '../views/ModalView.js';
 import TaskBoardView from '../views/TaskBoardView.js';
 
-export default class TaskController {
+export default class AppController {
     constructor() {
         this.store = new TaskStore();
         this.modalView = new ModalView('task-modal');
