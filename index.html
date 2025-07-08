@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" href="images/fav_icon.png" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Task manager app</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
@@ -10,10 +11,14 @@
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/modal.css">
     <link rel="stylesheet" href="css/tasks.css">
+    <link rel="stylesheet" href="css/navbar.css">
     <meta name="description" content="Task Manager application, minimal design, CRUD operations, responsive">
 </head>
 
 <body>
+    <nav class="navbar">
+        <div class="navbar__logo">TaskBoard</div>
+    </nav>
     <section class="task-manager">
         <div id="task-board" class="task__board">
             <div data-status="pending" class="task__group">
