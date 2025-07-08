@@ -7,6 +7,7 @@ export default class TaskController {
         this.store = new TaskStore();
         this.modalView = new ModalView('task-modal');
         this.boardView = new TaskBoardView('task-board');
+        this.highlightTaskId = null;
 
         this.setupEventHandlers();
         this.renderBoard();
@@ -30,10 +31,13 @@ export default class TaskController {
                 window.dispatchEvent(event);
             }
         });
+
         // Create new task [store]
         window.addEventListener('taskCreate', (e) => {
             const { taskData } = e.detail;
             this.store.addTask(taskData);
+
+            this.highlightTaskId = taskData.id;
             this.renderBoard();
         });
 
@@ -41,6 +45,8 @@ export default class TaskController {
         window.addEventListener('taskUpdate', (e) => {
             const { taskData } = e.detail;
             this.store.updateTask(taskData);
+
+            this.highlightTaskId = taskData.id;
             this.renderBoard();
         });
 
@@ -55,9 +61,12 @@ export default class TaskController {
         window.addEventListener('taskStatusChange', (e) => {
             const { taskId, newStatus } = e.detail;
             this.store.updateTaskStatus(taskId, newStatus);
+
+            this.highlightTaskId = taskId
             this.renderBoard();
         });
     }
+
 
     renderBoard() {
         const tasksByStatus = {
@@ -65,6 +74,7 @@ export default class TaskController {
             inprogress: this.store.getTasksByStatus('inprogress'),
             completed: this.store.getTasksByStatus('completed'),
         };
-        this.boardView.render(tasksByStatus);
+        this.boardView.render(tasksByStatus, this.highlightTaskId);
+        this.highlightTaskId = null;
     }
 }

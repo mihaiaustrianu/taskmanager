@@ -62,7 +62,7 @@ export default class TaskBoardView {
         });
     }
 
-    render(tasksByStatus) {
+    render(tasksByStatus, highlightTaskId = null) {
         // Reset columns before injecting new list
         Object.values(this.columns).forEach((col) => (col.innerHTML = ''));
 
@@ -71,7 +71,7 @@ export default class TaskBoardView {
             (status) => {
                 const tasks = tasksByStatus[status] || [];
                 tasks.forEach((task) => {
-                    const taskHTML = new TaskView(task).render();
+                    const taskHTML = new TaskView(task).render(highlightTaskId);
                     this.columns[status].insertAdjacentHTML(
                         'beforeend',
                         taskHTML
@@ -79,5 +79,17 @@ export default class TaskBoardView {
                 });
             }
         );
+
+        // Add class dinamically to last added task
+        if (highlightTaskId) {
+            const newTaskEl = document.querySelector(`.task[data-id="${highlightTaskId}"]`);
+            if (newTaskEl) {
+                newTaskEl.classList.add('task--highlighted');
+
+                newTaskEl.addEventListener('animationend', () => {
+                    newTaskEl.classList.remove('task--highlighted');
+                }, { once: true });
+            }
+        }
     }
 }
