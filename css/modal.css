@@ -43,7 +43,7 @@
 }
 
 .modal__content textarea {
-    height: 80px;
+    min-height: 200px;
     resize: vertical;
 }
 
