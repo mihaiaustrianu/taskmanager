@@ -4,18 +4,18 @@ The app has a minimalist design focused on functionality while still respecting 
 <h2>1. Desktop </h2>
 On desktop the app has a simple design, consisting of a grid displayed in three columns.
 
-![image](https://github.com/user-attachments/assets/065089cb-e6dd-40c7-8930-f3c0fc5b34f1)
+<img width="1728" alt="image" src="https://github.com/user-attachments/assets/14541f2b-30f4-4b5c-ab4a-4b90a180ccd2" />
 
-The update and delete operations can be triggered on each individual card. The create operation is triggered from the "Add task" button.
-On desktop, the status change operation can be triggered by dragging a task in the desired column.
+- The update and delete operations can be triggered on each individual card.
+- The create operation is triggered from the "Add task" button.
+- On desktop, the status change operation can be triggered by dragging a task in the desired column.
 <h2>2. Mobile </h2>
 
 On mobile, the grid collapses to a single column.
 
-![image](https://github.com/user-attachments/assets/bc02b035-f897-41bd-a211-7bca4d9f1192)
+<img width="575" alt="image" src="https://github.com/user-attachments/assets/ae0e3585-4d74-422f-af53-0f170f231460" />
 
-
-The user no longer has access to the drag functionality, so on smaller resolutions it has been replaced by a status dropdown that can trigger the update.
+- The user no longer has access to the drag functionality, so on smaller resolutions it has been replaced by a status dropdown that can trigger the update.
 
 <h2>3. Color pallete</h2>
 The color pallete is simple, consisting of white, grays and black for the text/borders and a neutral color scheme for backgrounds and elements
@@ -31,8 +31,8 @@ The app follows accessibility principles:
 </ul>
 
 <h2>5. User Feedback</h2>
-When a task is created, updated, or deleted, the UI updates dynamically to provide immediate feedback.
-When a task is being dragged, the real element is blurred out. Upon hovering over a column, the border is higlighted 
+- When a task is created, updated, or deleted, the UI updates dynamically to provide immediate feedback.
+- While dragging distinct animations are being triggered to provide visual feedback to the user
 
 <h1>Architecture</h1>
 
@@ -49,13 +49,14 @@ When a task is being dragged, the real element is blurred out. Upon hovering ove
   <li><b>TaskStore:</b> Manages task data and persistence in localStorage.</li>
   <li><b>TaskBoardView:</b> Renders tasks in their respective columns.</li>
   <li><b>ModalView:</b> Handles task creation and editing modal.</li>
-  <li><b>TaskController:</b> Mediates between views and data store, handles events.</li>
+  <li><b>AppController:</b> Mediates between views and data store, handles events.</li>
   <li><b>TaskView:</b> Renders individual tasks as cards.</li>
 </ul>
 
 <h2>3. Data Flows</h2>
-The app implements an MVC-inspired architecture, where the TaskController coordinates between TaskStore (model) and multiple views.
+The app implements an MVC-inspired architecture, where the AppController coordinates between TaskStore (model) and multiple views.
 This separation ensures maintainability, readability, and testability.
+The AppController is responsible for instantiating the views and the store, ensuring they are only created once during the application lifecycle. 
 
 ![UMLDiagram drawio](https://github.com/user-attachments/assets/af2885ae-27b5-4284-ae2e-4fc468205bd5)
 
