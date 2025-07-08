@@ -1,10 +1,3 @@
-section {
-    margin-top: 40px;
-    padding-left: 40px;
-    padding-right: 40px;
-    margin-bottom: 40px;
-}
-
 .task__board {
     display: grid;
     gap: var(--spacing-sm);
@@ -23,6 +16,7 @@ section {
     border-radius: var(--border-radius);
     box-shadow: var(--shadow-sm);
     min-height: 500px;
+    border: var(--border-width) solid var(--color-grey);
 }
 
 .task__column-heading {
@@ -30,7 +24,8 @@ section {
     margin: 0;
     background: var(--color-highlight);
     color: var(--color-white);
-    border-radius: var(--border-radius) var(--border-radius) 0 0;
+    border-radius: calc(var(--border-radius) - var(--border-width))
+        calc(var(--border-radius) - var(--border-width)) 0 0;
     font-size: 1.2rem;
     font-weight: 600;
 }
@@ -41,24 +36,45 @@ section {
     padding: var(--spacing-md);
 }
 
-.task__delete {
+.task__delete,
+.task__edit {
     position: absolute;
-    top: var(--spacing-xs);
-    right: var(--spacing-xs);
     background: transparent;
     border: none;
     cursor: pointer;
+    padding: 0;
 }
 
-.task__delete-icon {
+.task__delete-icon,
+.task__edit-icon {
     width: 40px;
     height: 40px;
     pointer-events: none;
     transition: fill 0.3s ease;
 }
 
+.task__delete {
+    bottom: var(--spacing-xs);
+    right: var(--spacing-xs);
+}
+
 .task__delete:hover .task__delete-icon {
     fill: red;
+}
+
+.task__edit {
+    top: var(--spacing-sm);
+    right: var(--spacing-sm);
+}
+
+.task__edit-icon {
+    width: 24px;
+    height: 24px;
+    fill: var(--color-secondary);
+}
+
+.task__edit:hover .task__edit-icon {
+    fill: var(--color-secondary-dark);
 }
 
 .task__add-button {
@@ -102,7 +118,7 @@ section {
 
 .drag-over {
     background: #e8f5e8;
-    border: var(--border-width) dashed var(--color-completed)
+    border: var(--border-width) dashed var(--color-completed);
 }
 
 .task h3 {
@@ -114,6 +130,19 @@ section {
     line-height: 1.4;
 }
 
+.task--highlighted {
+    animation: highlightFade 2s ease forwards;
+}
+
+@keyframes highlightFade {
+    0% {
+        background-color: var(--color-pending);
+    }
+    100% {
+        background-color: transparent;
+    }
+}
+
 .task__status {
     margin-top: var(--spacing-sm);
     width: 120px;
@@ -123,7 +152,7 @@ section {
     font-weight: 500;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
     .task__board {
         grid-template-columns: repeat(3, 1fr);
         grid-template-areas:

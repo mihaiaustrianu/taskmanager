@@ -1,14 +1,10 @@
-import AddTaskForm from './components/AddTaskForm.js';
+import ModalView from './views/ModalView.js';
 import TaskBoardView from './views/TaskBoardView.js';
 import TaskStore from './store/TaskStore.js';
-
+import TaskController from './components/AppController.js';
 
 const store = new TaskStore();
-const boardView = new TaskBoardView('task-board', store);
+const modalView = new ModalView('task-modal').init();
+const boardView = new TaskBoardView('task-board', store, modalView);
 
-boardView.render();
-
-const addTaskForm = new AddTaskForm((newTask) => {
-    store.addTask(newTask);
-    boardView.render();
-});
+const controller = new TaskController(store, boardView, modalView);

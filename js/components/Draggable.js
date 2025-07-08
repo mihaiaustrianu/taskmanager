@@ -1,7 +1,5 @@
 export default class Draggable {
-    constructor(groups, store, onTaskMoved) {
-        this.store = store;
-        this.onTaskMoved = onTaskMoved;
+    constructor(groups) {
         this.draggedElement = null;
         this.draggedTaskId = null;
 
@@ -72,7 +70,6 @@ export default class Draggable {
     }
 
     handleDragLeave(e) {
-
         if (!e.currentTarget.contains(e.relatedTarget)) {
             e.currentTarget.classList.remove('drag-over');
         }
@@ -87,11 +84,10 @@ export default class Draggable {
         const newStatus = this.getStatusFromGroup(e.currentTarget);
 
         if (newStatus) {
-            this.store.updateTaskStatus(this.draggedTaskId, newStatus);
-
-            if (this.onTaskMoved) {
-                this.onTaskMoved();
-            }
+            const event = new CustomEvent('taskStatusChange', {
+                detail: { taskId: this.draggedTaskId, newStatus },
+            });
+            window.dispatchEvent(event);
         }
     }
 

@@ -29,7 +29,7 @@
     width: 100%;
     padding: 12px;
     margin-bottom: var(--spacing-sm);
-    border: 1px solid var(--color-grey);
+    border: 2px solid var(--color-grey);
     border-radius: var(--border-radius);
     font-size: 14px;
     font-family: inherit;
@@ -43,7 +43,7 @@
 }
 
 .modal__content textarea {
-    height: 80px;
+    min-height: 200px;
     resize: vertical;
 }
 
