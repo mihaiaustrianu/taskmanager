@@ -2,6 +2,7 @@ export default class Draggable {
     constructor(groups) {
         this.draggedElement = null;
         this.draggedTaskId = null;
+        this.draggedTaskStatus = null;
 
         groups.forEach((group) => {
             this.setupGroup(group);
@@ -53,14 +54,18 @@ export default class Draggable {
     handleDragStart(e) {
         this.draggedElement = e.target;
         this.draggedTaskId = e.target.dataset.id;
+        this.draggedTaskStatus = e.target.dataset.taskStatus;
+
         e.target.classList.add('dragging');
         e.dataTransfer.effectAllowed = 'move';
     }
 
     handleDragEnd(e) {
         e.target.classList.remove('dragging');
+
         this.draggedElement = null;
         this.draggedTaskId = null;
+        this.draggedTaskStatus = null;
     }
 
     handleDragOver(e) {
@@ -83,7 +88,7 @@ export default class Draggable {
 
         const newStatus = this.getStatusFromGroup(e.currentTarget);
 
-        if (newStatus) {
+        if (newStatus && newStatus != this.draggedTaskStatus) {
             const event = new CustomEvent('taskStatusChange', {
                 detail: { taskId: this.draggedTaskId, newStatus },
             });
