@@ -5,6 +5,7 @@ export default class ModalView {
         this.closeBtn = this.modal.querySelector('#close-task-modal');
         this.editingTaskId = null;
         this.isEditMode = false;
+        this.init();
     }
 
     init() {
