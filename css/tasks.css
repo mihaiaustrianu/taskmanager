@@ -16,6 +16,7 @@
     border-radius: var(--border-radius);
     box-shadow: var(--shadow-sm);
     min-height: 500px;
+    border: var(--border-width) solid var(--color-grey);
 }
 
 .task__column-heading {
@@ -23,7 +24,7 @@
     margin: 0;
     background: var(--color-highlight);
     color: var(--color-white);
-    border-radius: var(--border-radius) var(--border-radius) 0 0;
+    border-radius: calc(var(--border-radius) - var(--border-width)) calc(var(--border-radius) - var(--border-width)) 0 0;
     font-size: 1.2rem;
     font-weight: 600;
 }
