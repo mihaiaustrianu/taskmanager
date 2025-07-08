@@ -1,8 +1,8 @@
 <h1> Design </h1>
 The app has a minimalist design focused on functionality while still respecting design principles, responsiveness, and user accessibility.
 
-<h2> Desktop </h2>
-On desktop the app has a simple design, consisting of a grid dispalyed in three columns.
+<h2>1. Desktop </h2>
+On desktop the app has a simple design, consisting of a grid displayed in three columns.
 
 ![image](https://github.com/user-attachments/assets/065089cb-e6dd-40c7-8930-f3c0fc5b34f1)
 
@@ -17,12 +17,25 @@ On mobile, the grid collapses to a single column.
 
 The user no longer has access to the drag functionality, so on smaller resolutions it has been replaced by a status dropdown that can trigger the update.
 
-<h2>Color pallete</h2>
+<h2>2.Color pallete</h2>
 The color pallete is simple, consisting of white, grays and black for the text/borders and a neutral color scheme for backgrounds and elements
 
 ![image](https://github.com/user-attachments/assets/c3cb592d-16d2-4b31-b3b0-ee6a40e4be67)
 
-<h1>Architecture</h2>
+<h2>3. Accessibility</h2>
+The app follows accessibility principles:
+<ul>
+  <li>Uses semantic HTML for structure and readability.</li>
+  <li>Interactive elements include aria-labels for screen readers.</li>
+  <li>Responsive layouts ensure usability on all devices.</li>
+</ul>
+
+<h2>4. User Feedback</h2>
+When a task is created, updated, or deleted, the UI updates dynamically to provide immediate feedback.
+When a task is being dragged, the real element is blurred out. Upon hovering over a column, the border is higlighted 
+
+<h1>Architecture</h1>
+
 <h2>1. Technology stack</h2>
 <ul>
   <li>HTML5</li>
@@ -43,6 +56,7 @@ The color pallete is simple, consisting of white, grays and black for the text/b
 <h2>3. Data Flows</h2>
 The app implements an MVC-inspired architecture, where the TaskController coordinates between TaskStore (model) and multiple views. 
 This separation ensures maintainability, readability, and testability.
+
 ![UMLDiagram drawio](https://github.com/user-attachments/assets/af2885ae-27b5-4284-ae2e-4fc468205bd5)
 
 Actions by users trigger actions that emit custom events. These events are captured in the AppController.
@@ -55,8 +69,52 @@ Events:
   <li>taskUpdate - updates a task from the store</li>
   <li>taskDelete - deletes a task from the store</li>
   <li>taskStatusChange - updates the status of a task (used for Drag and select status updates)</li>
-  <li>taskCreateRequest - opens a modal in create mode </li>
-  <li>taskEditRequest - opens a modal in edit mode </li>
+  <li>taskCreateRequest - requests that a modal is opened in create mode</li>
+  <li>taskEditRequest - requests that a modal is opened in edit mode </li>
+  <li>openModalForCreate - opens a modal in create mode </li>
+  <li>openModalForEdit - opens a modal in edit mode </li>
 </ul>
+
+Using custom events decouples the UI components from each other, allowing easy extension of functionality in the future.
+
+<h3>3.1. Event Flow for create : </h3>
+
+![EventFlow drawio (1)](https://github.com/user-attachments/assets/b8990ff2-6d6c-49b2-9d6a-44192489eb7a)
+
+1. The user initiates an action (Add task). 
+2. A [taskCreateRequest] is emitted from the TaskBoard.
+3. This event is captured by the AppController that emits a new [openModalForCreate] request to the Modal
+4. If the user submits the form, a [taskCreate] request is sent back to the AppController
+5. The store is updated
+6. The taskBoard is refreshed with the new data
+
+<h3>3.2. Event Flow for update</h3>
+For update, the event flow is simillar
+
+<h3>3.3. Event flow for delete</h3>
+<ol>
+  <li>The user initiates a delete action</li>
+  <li>A [taskDelete] event is dispatched from the TaskBoard.</li>
+  <li>The App Controller triggers the delete action in the store</li>
+  <li> The board is rerendered with the new data</li>
+</ol>
+
+<h2>4. Extensibility</h2>
+The architecture allows:
+<ul>
+  <li>Adding authentication and backend APIs with minimal changes to the controller.</li>
+  <li>Implementing new views or filters without altering existing business logic.</li>
+  <li>Enhancing rendering options through the RenderOptions pattern class.</li>
+</ul>
+
+
+<h1>State Management</h1>
+
+- The state is handled in localStorage.
+- The data is saved under the [tasks] key in JSON format.
+- Data persistence is limited, as there is no backend
+
+
+
 
 
