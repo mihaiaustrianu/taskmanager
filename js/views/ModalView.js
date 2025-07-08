@@ -15,7 +15,7 @@ export default class ModalView {
     setupEventHandlers() {
         this.closeBtn.addEventListener('click', () => this.closeModal());
 
-        window.addEventListener('click', (e) => {
+        window.addEventListener('mousedown', (e) => {
             if (e.target === this.modal) {
                 this.closeModal();
             }
